@@ -6,5 +6,6 @@ urlpatterns = [
     path('Login/', views.Login),
     path('CarritoDeCompras/', views.CarritoDeCompras),
     path('Tienda/', views.Tienda),
-    path('CrearUsuario/', views.CrearUsuario)
+    path('CrearUsuario/', views.CrearUsuario),
+    path('CrearCliente/', views.CrearCliente)
 ]
