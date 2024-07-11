@@ -1,0 +1,37 @@
+{% extends "./Base.html" %}
+
+{% block title %}Tienda{% endblock %}
+
+{% block body %}
+<div>
+    <div>
+        <table>
+            <tr class="row">
+                {% for p in Producto %}
+                <form action="anadir_carrito" method="post">
+                <td class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://png.pngtree.com/png-clipart/20221221/original/pngtree-cartoon-open-book-png-image_8791644.png" class="card-img-top" alt="Libro">
+                        <div class="card-body">
+                            <h5 class="card-title"><input type="hidden" value="{{p.nombre_prod}}" name="nombre_prod"> {{p.nombre_prod}}</h5>
+                            <table>
+                                <tr>
+                                    <td><Strong>Idioma:</Strong></td>
+                                    <td ><input type="hidden" value="{{p.id_producto}}" name="id_producto"> {{p.idioma_prod}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Precio:</strong></td>
+                                    <td><input type="hidden" value="{{p.precio_prod}}" name="precio_prod"> {{p.precio_prod}}</td>
+                                </tr>
+                            </table>
+                            <button type="submit" class="btn btn-block btn-primary">Añadir al Carrito+</button>
+                        </div>
+                    </div>
+                </td>
+                </form>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

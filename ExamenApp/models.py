@@ -18,5 +18,14 @@ class Producto(models.Model):
     precio_prod = models.IntegerField()
     idioma_prod = models.CharField(max_length=25)
 
+class DetalleVenta(models.Model):
+    id_producto = models.PositiveSmallIntegerField()
+    id_carrito = models.PositiveSmallIntegerField()
+    nombre_prod = models.CharField(max_length=100)
+    cantidad_prod = models.PositiveSmallIntegerField()
+    precio_prod = models.IntegerField()
 
-
+class Carrito(models.Model):
+    id_carrito = models.PositiveSmallIntegerField()
+    total_precio = models.IntegerField()
+    

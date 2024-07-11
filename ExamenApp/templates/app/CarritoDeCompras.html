@@ -3,4 +3,7 @@
 {% block title %}Carrito de Compras{% endblock %}
 
 {% block body %}
+    {% for c in detalleVentas %}
+    <li>{{c.id_producto}}</li>
+    {% endfor %}
 {% endblock %}

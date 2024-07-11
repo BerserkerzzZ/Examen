@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="http://127.0.0.1:8000">Inicio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -15,17 +15,13 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
-                
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+            
             <table>
                 <tr>
-                    <td><a href="http://127.0.0.1:8000/CrearUsuario/" class="nav-link active">Crear Cuenta</a></td>
-                    <td><a href="http://127.0.0.1:8000/Login/" class="nav-link active">Iniciar Sesión</a></td>
+                    <td><a href="http://127.0.0.1:8000/Tienda/" class="nav-link active">Tienda</a></td>
+                    <td><a href="http://127.0.0.1:8000/CarritoDeCompras/" class="nav-link active">Carrito de Compras</a></td>
+                    <td><a href="http://127.0.0.1:8000/registro/" class="nav-link active">Crear Cuenta</a></td>
+                    <td><a href="{% url 'login' %}" class="nav-link active">Iniciar Sesión</a></td>
                 </tr>
             </table>
         </div>

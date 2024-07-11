@@ -1,32 +1,47 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Cliente
-
+from .models import Producto, DetalleVenta, Carrito
+from .forms import CrearUsuarios
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 def home(request):
-    return render(request, "Inicio.html")
-
-def Login(request):
-    return render(request, "Login.html")
+    return render(request, "app/Inicio.html")
 
 def CarritoDeCompras(request):
-    return render(request, "CarritoDeCompras.html")
+    return render(request, "app/CarritoDeCompras.html")
 
 def Tienda(request):
-    return render(request, "Tienda.html")
+    producto = Producto.objects.all()
+    return render(request, "app/Tienda.html", {"Producto":producto})
 
-def CrearUsuario(request):
-    return render(request, "CrearUsuario.html")
+def registro(request):
+    data = {
+        'form': CrearUsuarios()
+    }
 
-def CrearCliente(request):
-    rut_cli=request.POST['rut_cli']
-    nombre_cli=request.POST['nombre_cli']
-    apellido_cli=request.POST['apellido_cli']
-    correo_cli=request.POST['correo_cli']
-    contraseña_cli=request.POST['contraseña_cli']
+    if request.method == 'POST':
+        formulario = CrearUsuarios(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request,"Te has registrado correctamente.")
+            return redirect(to="http://127.0.0.1:8000")
+        data["form"] = formulario
 
-    cliente = Cliente.objects.create(
-        rut_cli=rut_cli, nombre_cli=nombre_cli,apellido_cli=apellido_cli,correo_cli=correo_cli,contraseña_cli=contraseña_cli
-    )
-    return render(request, "Login.html")
+    return render(request, 'registration/registro.html', data)
+
+def det_venta(request):
+    detalleVentas = DetalleVenta.objects.all()
+    return render (request, "CarritoDeCompras.html", {"detalleVentas":detalleVentas})
+
+def anadir_carrito(request):
+    id_producto=request.POST['id_producto']
+    nombre_prod=request.POST['nombre_prod']
+    precio_prod=request.POST['precio_prod']
+
+    detalleVenta=DetalleVenta.objects.create(id_producto=id_producto,nombre_prod=nombre_prod,precio_prod=precio_prod)
+    messages.success(request,"Se añadio correctamente.")

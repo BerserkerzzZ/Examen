@@ -1,0 +1,12 @@
+{% extends 'app/Base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block body %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn btn-block btn-primary">Iniciar Sesión</button>
+</form>
+{% endblock %}
